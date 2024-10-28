@@ -13,11 +13,11 @@ import random
 from player import *
 from itertools import product
 
-class B3_Player(Player):
+class Baseline3(Player):
 
     def __init__(self):
         super().__init__()
-        self.player_name = "B3_Player"
+        self.player_name = "Baseline3"
         self.possible_codes = []        # Potential valid guesses based on identified patterns
         self.color_counts = {}          # Dict to track frequencies of each color
         self.previous_guesses = []      # List to store all previous guesses made
