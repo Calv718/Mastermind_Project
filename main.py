@@ -5,7 +5,7 @@ import argparse
 from scsa import *
 from player import *
 from mastermind import *
-# from LogicLegends_B1 import Baseline1
+from LogicLegends_B1 import Baseline1
 from LogicLegends_B2 import Baseline2
 from LogicLegends_B3 import Baseline3
 from LogicLegends_B4 import Baseline4
