@@ -5,6 +5,8 @@ import argparse
 from scsa import *
 from player import *
 from mastermind import *
+from LogicLegends_B2 import B2_Player
+from LogicLegends_B3 import B3_Player
 
 
 parser = argparse.ArgumentParser(description="Play a game of Mastermind.")
@@ -17,7 +19,7 @@ parser.add_argument(
     nargs="?",
     type=str,
     required=True,
-    choices=["RandomFolks", "Boring"],
+    choices=["RandomFolks", "Boring", "B2_Player", "B3_Player"],
 )
 parser.add_argument(
     "--scsa_name",
@@ -49,6 +51,14 @@ def str_to_player(player_name: str) -> Player:
     elif player_name == "Boring":
 
         player = Boring()
+
+    elif player_name == "B2_Player":
+
+        player = B2_Player()
+
+    elif player_name == "B3_Player":
+
+        player = B3_Player()
 
     else:
 
