@@ -1,14 +1,23 @@
+"""
+Below is the implementation of a Player class using the baseline strategy B1 from the Project Description:
+
+B1: Exhaustively enumerate all possibilities. Guess each possibility in lexicographic order one at a time, and pay
+no attention to the system's responses. For example, if pegs p = 4 and colors c = 3, guess AAAA, AAAB, AAAC,
+AABA, AABB, AABC and so on. This method will take at most c^p guesses.
+
+"""
+
+import time
+import random
 from player import *
 from itertools import product
-import random
-import time
 
-class B2_Player(Player):
+class Baseline2(Player):
 
     def __init__(self):
 
         super().__init__()
-        self.player_name = "B2_Player"
+        self.player_name = "Baseline2"
         self.possible_codes = []  # List to keep track of all possible codes
         self.previous_guesses = []  # List to store previous guesses
 

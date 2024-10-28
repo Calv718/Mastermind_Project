@@ -1,23 +1,33 @@
+"""
+Below is the implementation of a Player class using the baseline strategy B3 from the Project Description:
+
+B3: Make your first c - 1 guesses monochromatic: "all A's," "all B's,"… for all but one of the c colors. That will
+tell you how many pegs of each color are in the answer. (You don't need to actually guess the last color; you can
+compute how many of those there are from the other answers.) Then you generate and test only answers consistent
+with that known color distribution.
+
+"""
+
 import time
 import random
 from player import *
 from itertools import product
 
-class B3_Player(Player):
+class Baseline3(Player):
 
     def __init__(self):
         super().__init__()
-        self.player_name = "B3_Player"
-        self.possible_codes = []  # Potential valid guesses based on identified patterns
-        self.color_counts = {}  # Dict to track frequencies of each color
-        self.previous_guesses = []  # List to store all previous guesses made
-        self.pattern_index = 0  # Index to keep track of which color is being tested
-        self.step = 0  # Step counter for the number of guesses made
-        self.identified_colors = []  # List to store identified colors that are in the code
-        self.scsa_name = None  # To store the current SCSA being used
+        self.player_name = "Baseline3"
+        self.possible_codes = []        # Potential valid guesses based on identified patterns
+        self.color_counts = {}          # Dict to track frequencies of each color
+        self.previous_guesses = []      # List to store all previous guesses made
+        self.pattern_index = 0          # Index to keep track of which color is being tested
+        self.step = 0                   # Step counter for the number of guesses made
+        self.identified_colors = []     # List to store identified colors that are in the code
+        self.scsa_name = None           # To store the current SCSA being used
 
     def make_guess(self, board_length: int, colors: list[str], scsa_name: str, last_response: tuple[int, int, int]) -> str:
-        start_time = time.time()  # Start the timer
+        start_time = time.time()    # Start the timer
 
         # Set the SCSA name on the first guess
         if self.scsa_name is None:
@@ -44,7 +54,7 @@ class B3_Player(Player):
 
         # Store the current guess in the list of previous guesses
         self.previous_guesses.append(guess)
-        self.step += 1  # Increment the step count
+        self.step += 1      # Increment the step count
         return guess
 
     def adapt_strategy(self, board_length: int, colors: list[str]) -> str:

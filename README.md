@@ -7,6 +7,7 @@ See main.py or examples.ipynb for example usages.
 Example run of main.py:
 `python3 main.py --board_length 4 --num_colors 6 --player_name RandomFolks --scsa_name InsertColors --num_rounds 100`
 
+
 # How to run and test the code against different player baseline strategies and SCSA's
 
 ### How to run the code in this repo:
