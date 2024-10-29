@@ -20,6 +20,8 @@ class Baseline2(Player):
         self.player_name = "Baseline2"
         self.possible_codes = []  # List to keep track of all possible codes
         self.previous_guesses = []  # List to store previous guesses
+        self.time_cutoff = 5       
+        self.time_buffer = 0.1  
 
     def make_guess(self, board_length: int, colors: list[str], scsa_name: str, last_response: tuple[int, int, int]) -> str:
             start_time = time.time()  # Start the timer
@@ -37,9 +39,11 @@ class Baseline2(Player):
                 ]
 
             # Check if we are close to the time limit (5 seconds)
-            if time.time() - start_time > 4.8:
-                # If we are nearing the time limit, make a quick random guess
-                guess = ''.join(random.choices(colors, k=board_length))
+            elapsed_time = time.time() - start_time
+            if elapsed_time > self.time_cutoff - self.time_buffer:
+                # If we are nearing the time limit, use the last quess
+                if self.previous_guesses:
+                    guess = self.previous_guesses[-1]
 
             elif self.possible_codes:
                 # Select the next guess from the filtered list of possible codes

@@ -25,6 +25,8 @@ class Baseline3(Player):
         self.step = 0                   # Step counter for the number of guesses made
         self.identified_colors = []     # List to store identified colors that are in the code
         self.scsa_name = None           # To store the current SCSA being used
+        self.time_cutoff = 5       
+        self.time_buffer = 0.1  
 
     def make_guess(self, board_length: int, colors: list[str], scsa_name: str, last_response: tuple[int, int, int]) -> str:
         start_time = time.time()    # Start the timer
@@ -43,8 +45,9 @@ class Baseline3(Player):
                 if identified_color not in self.identified_colors:
                     self.identified_colors.append(identified_color)
 
-        # Check if we are close to the time limit (4.8 seconds)
-        if time.time() - start_time > 4.8:
+        # Check if we are close to the time limit (5 seconds)
+        elapsed_time = time.time() - start_time
+        if elapsed_time > self.time_cutoff - self.time_buffer:
             # Make a random fallback guess if time is running out
             guess = ''.join(random.choices(colors, k=board_length))
             
