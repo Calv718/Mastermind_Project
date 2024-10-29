@@ -37,3 +37,9 @@ Example run of main.py:
 3. ```git switch your_branch_name``` To switch to your personal branch.
 4. ```git merge main``` To merge your local main branch with your personal branch.
 5. Resolve any merge conflicts to make sure none of the code you want to keep is lost. 
+
+
+### How to test the players on the command line.
+- run ```python  main.py --board_length 6 --num_colors 4 --player_name Baseline3 --scsa_name InsertColors --num_rounds 100```
+- "Baseline3" should be replaced by the player name you are trying to use.
+- "InsertColors" should be replaced by the SCSA you would like to use.
