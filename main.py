@@ -36,11 +36,6 @@ parser.add_argument(
         "FirstLast",
         "UsuallyFewer",
         "PreferFewer",
-        "Mystery1",
-        "Mystery2",
-        "Mystery3",
-        "Mystery4",
-        "Mystery5",
     ],
 )
 parser.add_argument("--num_rounds", nargs="?", type=int, required=True)
@@ -114,10 +109,6 @@ def str_to_scsa(scsa_name: str) -> SCSA:
     elif scsa_name == "PreferFewer":
 
         scsa = PreferFewer()
-
-    elif scsa_name == "Mystery1":
-
-        scsa = Mystery1()
 
     else:
 
