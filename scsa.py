@@ -510,3 +510,40 @@ class PreferFewer(SCSA):
             codes.append(code)
 
         return codes
+
+
+
+class Mystery1(SCSA):
+    """SCSA that generates codes to replicate the patterns seen in 'mystery1'."""
+    
+    def __init__(self):
+        """Constructor for Mystery1SCSA."""
+        self.name = "Mystery1SCSA"
+
+    def generate_codes(self, length: int, colors: list[str], num_codes: int = 1) -> list[str]:
+        """Generate codes based on patterns observed in 'mystery1'."""
+        codes = []
+        
+        for _ in range(num_codes):
+            # Randomly choose a pattern type
+            pattern_type = random.choices(
+                ['uniform', 'random', 'alternating'], 
+                weights=[0.5, 0.4, 0.1],  # Weights to favor certain patterns
+                k=1
+            )[0]
+            
+            if pattern_type == 'uniform':
+                # Create a uniform code (all pegs the same)
+                color = random.choice(colors)
+                code = [color] * length
+            elif pattern_type == 'random':
+                # Create a random code
+                code = random.choices(colors, k=length)
+            else:  # 'alternating'
+                # Create an alternating pattern (like ABABAB...)
+                color1, color2 = random.sample(colors, 2)
+                code = [color1 if i % 2 == 0 else color2 for i in range(length)]
+            
+            codes.append(list_to_str(code))
+
+        return codes
