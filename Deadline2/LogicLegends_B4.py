@@ -8,23 +8,10 @@ B4: The article by Rao (posted on Blackboard) has a heuristic algorithm that is 
 import time
 import random
 from player import *
-# from itertools import product
-
-# class Baseline4(Player):
-#     def __init__(self):
-#         super().__init__()
-#         self.player_name = "Baseline4"
-#         self.possible_codes = []
-
-
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Set, Dict
 from collections import defaultdict
 
-
-from abc import ABC, abstractmethod
-from typing import List, Tuple, Set, Dict
-from collections import defaultdict
 
 class Baseline4(Player):
     """Baseline4 implementation of Mastermind Player"""
