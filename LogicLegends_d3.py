@@ -13,13 +13,13 @@ from player import *
 from itertools import product
 
 
-class TourPlayer(Player):
+class LogicLegends(Player):
 
     def __init__(self):
-        """Constructor for TourPlayer"""
+        """Constructor for LogicLegends"""
 
         super().__init__()
-        self.player_name = "TourPlayer"
+        self.player_name = "LogicLegends"
         self.possible_codes = []    # List to keep track of all possible codes
         self.previous_guesses = []  # List to store previous guesses
         self.time_cutoff = 5       

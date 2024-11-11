@@ -1,35 +1,115 @@
-Project Deadline 2
-
-DEADLINE 2: 
-• Player teamName_B#.py where # is 1,2,3, or 4 for exactly one correctly-named, functioning baseline player that can play a 4-6 tournament in our environment without illegal guesses
-• Output (teamName_B#.txt) from a 4-6 tournament where your baseline played 100 rounds against 2 different non-trivial SCSAs without illegal guesses.
-    (Which ones are trivial? InsertColors, ABColor, and OnlyOnce. What's so easy about InsertColors? It is totally random, so easy to compete against but hard to win against.)
+Below are the results from the Logic Legends Baseline 2 playing against the 13 SCSA's:
 
 
-Output for B2 InsertColors:
+
+InsertColors:
 
 Player: Baseline2
 SCSA Name: InsertColors
-Game: 6 Pegs 4 Colors
+Game: 5 Pegs 7 Colors
 Rounds: 100 out of 100
-Results: {Wins: 100, Losses: 0, Failures: 0, Score: 5491.014362861435}
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 6583.7999923091365}
 
 
+TwoColor:
 
-Output for B2 ABColor:
+Player: Baseline2
+SCSA Name: TwoColor
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7035.196934268329}
+
+
+ABColor:
 
 Player: Baseline2
 SCSA Name: ABColor
-Game: 6 Pegs 4 Colors
+Game: 5 Pegs 7 Colors
 Rounds: 100 out of 100
-Results: {Wins: 100, Losses: 0, Failures: 0, Score: 5446.1106342978765}
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7752.91348619575}
 
 
+TwoColorAlternating:
 
-Output for B2 OnlyOnce:
+Player: Baseline2
+SCSA Name: TwoColorAlternating
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7074.9023214082445}
+
+
+OnlyOnce:
 
 Player: Baseline2
 SCSA Name: OnlyOnce
-Game: 6 Pegs 4 Colors
+Game: 5 Pegs 7 Colors
 Rounds: 100 out of 100
-Results: {Wins: 100, Losses: 0, Failures: 0, Score: 5491.189213566604}
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 6663.771482228672}
+
+
+FirstLast:
+
+Player: Baseline2
+SCSA Name: FirstLast
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 6492.832258294669}
+
+
+UsuallyFewer:
+
+Player: Baseline2
+SCSA Name: UsuallyFewer
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 6825.173324973302}
+
+
+PreferFewer:
+
+Player: Baseline2
+SCSA Name: PreferFewer
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7931.262091872826}
+
+
+mystery1:
+
+Player: Baseline2
+SCSA Name: Mystery1
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7771.532315500563}
+
+
+mystery2:
+
+Player: Baseline2
+SCSA Name: Mystery2
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 6529.153010145578}
+
+
+mystery3:
+
+Wasn't given by Gradescope
+
+
+mystery4:
+
+Player: Baseline2
+SCSA Name: Mystery4
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 8335.198867049528}
+
+
+mystery5:
+
+Player: Baseline2
+SCSA Name: Mystery5
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7128.7454524870445}

@@ -9,7 +9,7 @@ from LogicLegends_B1 import Baseline1
 from LogicLegends_B2 import Baseline2
 from LogicLegends_B3 import Baseline3
 from LogicLegends_B4 import Baseline4
-from LogicLegends_d3 import TourPlayer
+from LogicLegends_d3 import LogicLegends
 
 parser = argparse.ArgumentParser(description="Play a game of Mastermind.")
 parser.add_argument("--board_length", nargs="?", type=int, required=True)
@@ -21,7 +21,7 @@ parser.add_argument(
     nargs="?",
     type=str,
     required=True,
-    choices=["RandomFolks", "Boring", "Baseline1", "Baseline2", "Baseline3", "TourPlayer"],
+    choices=["RandomFolks", "Boring", "Baseline1", "Baseline2", "Baseline3", "LogicLegends"],
 )
 parser.add_argument(
     "--scsa_name",
@@ -66,9 +66,9 @@ def str_to_player(player_name: str) -> Player:
 
         player = Baseline3()
 
-    elif player_name == "TourPlayer":
+    elif player_name == "LogicLegends":
 
-        player = TourPlayer()
+        player = LogicLegends()
 
     else:
 
