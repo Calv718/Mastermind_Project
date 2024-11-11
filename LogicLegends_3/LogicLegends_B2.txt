@@ -1,4 +1,4 @@
-Below are the results from the Logic Legends Baseline __ playing against the 13 SCSA's:
+Below are the results from the Logic Legends Baseline 2 playing against the 13 SCSA's:
 
 
 
@@ -76,15 +76,40 @@ Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7931.262091872826}
 
 mystery1:
 
-
+Player: Baseline2
+SCSA Name: Mystery1
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7771.532315500563}
 
 
 mystery2:
 
-
+Player: Baseline2
+SCSA Name: Mystery2
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 6529.153010145578}
 
 
 mystery3:
 
+Wasn't given by Gradescope
 
 
+mystery4:
+
+Player: Baseline2
+SCSA Name: Mystery4
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 8335.198867049528}
+
+
+mystery5:
+
+Player: Baseline2
+SCSA Name: Mystery5
+Game: 5 Pegs 7 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 7128.7454524870445}
