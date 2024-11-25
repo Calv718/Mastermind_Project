@@ -83,30 +83,30 @@ class LogicLegends(Player):
 
         # print('starting to generate all codes')
         
-        all_combinations = [''.join(p) for p in product(colors, repeat=length)]    
-        # print("done generating all codes, now focus on reducing to 10%")
+        # all_combinations = [''.join(p) for p in product(colors, repeat=length)]    
+        # # print("done generating all codes, now focus on reducing to 10%")
         
-        num_combinations_to_select = len(all_combinations) // 1
-        # print("done reducing, now return random sample")
+        # num_combinations_to_select = len(all_combinations) // 1000
+        # # print("done reducing, now return random sample")
     
-        return random.sample(all_combinations, num_combinations_to_select)
+        # return random.sample(all_combinations, num_combinations_to_select)
 
 
 
 
-        # total_combinations = len(list(combinations(colors, length)))
+        total_combinations = len(list(combinations(colors, length)))
 
-        # # Calculate the number of combinations to select (1/1000 of all combinations)
-        # num_combinations_to_select = total_combinations
+        # Calculate the number of combinations to select (1/1000 of all combinations)
+        num_combinations_to_select = total_combinations
 
-        # # Generate 1/1000 of the combinations randomly
-        # sampled_combinations = []
-        # for _ in range(num_combinations_to_select):
-        #         random_combination = random.sample(list(combinations(colors, length)), 1)
-        #         sampled_combinations.append(random_combination[0])
+        # Generate 1/1000 of the combinations randomly
+        sampled_combinations = []
+        for _ in range(num_combinations_to_select):
+                random_combination = random.sample(list(combinations(colors, length)), 1)
+                sampled_combinations.append(random_combination[0])
         
-        # # Print the sampled combinations
-        # return(sampled_combinations)
+        # Print the sampled combinations
+        return(sampled_combinations)
     
 
     def generate_twocolor(self, length: int, colors: list[str]) -> list[str]:
@@ -316,3 +316,55 @@ class LogicLegends(Player):
         """
         self.possible_codes = []
         self.previous_guesses = []
+
+
+    def generate_mystery1(self, length: int, colors: list[str]) -> list[str]:
+        """
+        Used to generate the possible codes for mystery1 SCSA
+        """
+        
+        return [''.join(p) for p in product(colors, repeat=length)]
+    
+    def generate_mystery2(self, length: int, colors: list[str]) -> list[str]:
+        """
+        Used to generate the possible codes for mystery1 SCSA
+        """
+        
+        return [''.join(p) for p in product(colors, repeat=length)]
+    
+    def generate_mystery3(self, length: int, colors: list[str]) -> list[str]:
+        """
+        Used to generate the possible codes for mystery1 SCSA
+        """
+        
+        return [''.join(p) for p in product(colors, repeat=length)]
+    
+    def generate_mystery4(self, length: int, colors: list[str]) -> list[str]:
+        """
+        Used to generate the possible codes for mystery1 SCSA
+        """
+        
+        return [''.join(p) for p in product(colors, repeat=length)]
+    
+    def generate_mystery5(self, length: int, colors: list[str]) -> list[str]:
+        """
+        Used to generate the possible codes for mystery1 SCSA
+        """
+        
+        return [''.join(p) for p in product(colors, repeat=length)]
+
+    def generate_mystery6(self, length: int, colors: list[str]) -> list[str]:
+        """
+        Used to generate the possible codes for mystery1 SCSA
+        """
+        
+        return [''.join(p) for p in product(colors, repeat=length)]
+
+    def generate_mystery7(self, length: int, colors: list[str]) -> list[str]:
+        """
+        Used to generate the possible codes for mystery1 SCSA
+        """
+        
+        return [''.join(p) for p in product(colors, repeat=length)]
+
+    
