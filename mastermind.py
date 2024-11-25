@@ -281,7 +281,7 @@ class Round:
             response = self.respond_to_guess(guess)
             player_response = response[1:]  # Remove result element
 
-            # print("Response:", response, "Time:", self.time_used)
+            print("Response:", response, "Time:", self.time_used)
 
             if response[0] != Result.VALID:
 
@@ -375,7 +375,7 @@ class Mastermind:
 
                 break
 
-            # print("Round:", round, "|",  "Result:", result, "|", "Guesses:", guesses)
+            print("Round:", round, "|",  "Result:", result, "|", "Guesses:", guesses)
 
             results.record_result(result)
 
