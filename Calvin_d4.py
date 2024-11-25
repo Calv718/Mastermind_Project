@@ -94,19 +94,38 @@ class LogicLegends(Player):
 
 
 
-        total_combinations = len(list(combinations(colors, length)))
+        # total_combinations = len(list(combinations(colors, length)))
 
-        # Calculate the number of combinations to select (1/1000 of all combinations)
-        num_combinations_to_select = total_combinations
+        # # Calculate the number of combinations to select (1/1000 of all combinations)
+        # num_combinations_to_select = total_combinations
 
-        # Generate 1/1000 of the combinations randomly
-        sampled_combinations = []
-        for _ in range(num_combinations_to_select):
-                random_combination = random.sample(list(combinations(colors, length)), 1)
-                sampled_combinations.append(random_combination[0])
+        # # Generate 1/1000 of the combinations randomly
+        # sampled_combinations = []
+        # for _ in range(num_combinations_to_select):
+        #         random_combination = random.sample(list(combinations(colors, length)), 1)
+        #         sampled_combinations.append(random_combination[0])
         
-        # Print the sampled combinations
-        return(sampled_combinations)
+        # # Print the sampled combinations
+        # return(sampled_combinations)
+    
+
+    
+        # Calculate the total number of possible combinations as colors^length
+        total_combinations = len(colors) ** length
+
+        # Determine the number of combinations to generate (1/100 of total)
+        num_combinations = max(1, total_combinations // 100)
+
+        # Use a set to ensure unique combinations
+        unique_combinations = set()
+
+        while len(unique_combinations) < num_combinations:
+            # Generate a random combination
+            combination = ''.join(random.choice(colors) for _ in range(length))
+            unique_combinations.add(combination)
+
+        return list(unique_combinations)
+    
     
 
     def generate_twocolor(self, length: int, colors: list[str]) -> list[str]:
