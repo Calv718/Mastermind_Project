@@ -1,7 +1,7 @@
 import time
 import random
 from player import Player
-from itertools import product, combinations
+from itertools import product, combinations, permutations
 from collections import Counter
 
 
@@ -111,12 +111,19 @@ class LogicLegends(Player):
         """
         # If the search space is too large, use a heuristic to choose the guess
         if len(self.possible_codes) > 500_000:
-            return self.heuristic_guess()
+            # print(f"Using heuristic_guess. Possible codes: {len(self.possible_codes)}")
+            guess = self.heuristic_guess()
+            # print(f"Heuristic guess selected: {guess}")
+            return guess
         elif self.possible_codes:
-            return self.possible_codes.pop(0)  # Take the first possible code
+            guess = self.possible_codes.pop(0) # Take the first possible code
+            # print(f"Selected next guess from possible_codes: {guess}")
+            return guess
         else:
-            # If no possible codes remain, fallback to a safe random guess
-            return self.generate_fallback_guess(scsa_name, length, colors)
+            # print("No possible codes remaining. Generating fallback guess.")
+            guess = self.generate_fallback_guess(scsa_name, length, colors)
+            # print(f"Fallback guess: {guess}")
+            return guess
 
     def is_consistent_with_feedback(self, guess: str, code: str, feedback: tuple[int, int, int]) -> bool:
         """
@@ -251,17 +258,27 @@ class LogicLegends(Player):
 
     def generate_InsertColors(self, length: int, colors: list[str]) -> list[str]:
         """
-        SCSA: InsertColors - Generates codes by selecting colors at random.
-
-        Args:
-            length (int): The length of the code to generate.
-            colors (list[str]): The list of available colors.
-
-        Returns:
-            list[str]: A list of generated codes.
+        Improved SCSA: InsertColors - Generates a strategic subset of codes to balance diversity and efficiency.
         """
-        # Use list comprehension for efficient generation of all possible combinations
-        return [''.join(p) for p in product(colors, repeat=length)]
+        max_codes = 2_500  # Limit the total number of codes generated
+        codes = set()
+
+        # Step 1 -> Generate diverse codes with maximum unique colors
+        while len(codes) < max_codes:
+            # Sample a subset of unique colors
+            selected_colors = random.sample(colors, min(length, len(colors)))
+            # Fill the rest of the code with random choices if fewer colors
+            while len(selected_colors) < length:
+                selected_colors.append(random.choice(colors))
+            # Shuffle to create different arrangements
+            random.shuffle(selected_colors)
+            codes.add(''.join(selected_colors))
+
+        # Step 2 -> Add random combinations to improve variability
+        while len(codes) < max_codes:
+            codes.add(''.join(random.choices(colors, k=length)))
+
+        return list(codes)
 
     def generate_TwoColor(self, length: int, colors: list[str]) -> list[str]:
         """
