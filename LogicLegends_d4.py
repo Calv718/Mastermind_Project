@@ -21,8 +21,8 @@ class LogicLegends(Player):
         self.player_name = "LogicLegends"
         self.possible_codes = []  # List to keep track of all possible codes
         self.previous_guesses = []  # List to store previous guesses
-        self.time_cutoff = 5  # Per-round time limit in seconds
-        self.time_buffer = 0.2  # Buffer to prevent exceeding time limit
+        self.time_cutoff = 3  # Per-round time limit in seconds
+        self.time_buffer = 0.4  # Buffer to prevent exceeding time limit
         self.max_guesses_per_round = 100  # Maximum guesses allowed per round
 
     def make_guess(self, board_length: int, colors: list[str], scsa_name: str, last_response: tuple[int, int, int]) -> str:
@@ -81,10 +81,32 @@ class LogicLegends(Player):
         # Use list comprehension for efficient generation
         # return [''.join(p) for p in product(colors, repeat=length)]
 
+        # print('starting to generate all codes')
+        
         all_combinations = [''.join(p) for p in product(colors, repeat=length)]    
-        num_combinations_to_select = len(all_combinations) // 5                 # Calculate the number of combinations to select (25% of the total combinations)
+        # print("done generating all codes, now focus on reducing to 10%")
+        
+        num_combinations_to_select = len(all_combinations) // 1
+        # print("done reducing, now return random sample")
     
         return random.sample(all_combinations, num_combinations_to_select)
+
+
+
+
+        # total_combinations = len(list(combinations(colors, length)))
+
+        # # Calculate the number of combinations to select (1/1000 of all combinations)
+        # num_combinations_to_select = total_combinations
+
+        # # Generate 1/1000 of the combinations randomly
+        # sampled_combinations = []
+        # for _ in range(num_combinations_to_select):
+        #         random_combination = random.sample(list(combinations(colors, length)), 1)
+        #         sampled_combinations.append(random_combination[0])
+        
+        # # Print the sampled combinations
+        # return(sampled_combinations)
     
 
     def generate_twocolor(self, length: int, colors: list[str]) -> list[str]:

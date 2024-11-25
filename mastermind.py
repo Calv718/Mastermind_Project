@@ -281,6 +281,7 @@ class Round:
             response = self.respond_to_guess(guess)
             player_response = response[1:]  # Remove result element
 
+            # This is to see the guess feedback and times
             print("Response:", response, "Time:", self.time_used)
 
             if response[0] != Result.VALID:
@@ -374,7 +375,9 @@ class Mastermind:
             if self.time_used > self.tournament_time_cutoff:
 
                 break
+            
 
+            # This is to see the result of each round
             print("Round:", round, "|",  "Result:", result, "|", "Guesses:", guesses)
 
             results.record_result(result)
