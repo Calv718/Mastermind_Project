@@ -5,7 +5,7 @@ import argparse
 from scsa import *
 from player import *
 from mastermind import *
-from LogicLegends_d4 import LogicLegends
+from sarah_D4 import LogicLegends
 
 parser = argparse.ArgumentParser(description="Play a game of Mastermind.")
 parser.add_argument("--board_length", nargs="?", type=int, required=True)

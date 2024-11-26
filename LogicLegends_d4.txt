@@ -8,7 +8,7 @@ Player: LogicLegends
 SCSA Name: TwoColor
 Game: 8 Pegs 10 Colors
 Rounds: 100 out of 100
-Results: {Wins: 100, Losses: 0, Failures: 0, Score: 14663.457846180678}
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 14677.139148235541}
 
 
 
@@ -18,4 +18,4 @@ Player: LogicLegends
 SCSA Name: TwoColorAlternating
 Game: 8 Pegs 10 Colors
 Rounds: 100 out of 100
-Results: {Wins: 100, Losses: 0, Failures: 0, Score: 17063.501848981752}
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 17302.549136033518}
