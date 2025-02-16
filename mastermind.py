@@ -331,11 +331,12 @@ class Mastermind:
             num_rounds (int): Number of rounds in the tournament.
         """
 
-        print("Player:", player.player_name)
+        print("\n\nPlayer:", player.player_name)
         print("SCSA Name:", scsa_name)
         print("Game:", self.board_length, "Pegs", self.num_colors, "Colors")
         print("Rounds:", results.get_number_of_rounds(), "out of", num_rounds)
-        print("Results:", results)
+        print("\n\nResults:", results)
+        print("\n\nTime Used:", self.time_used, "\n\n")
 
         return
 
@@ -375,7 +376,7 @@ class Mastermind:
 
                 break
 
-            # print("Round:", round, "|",  "Result:", result, "|", "Guesses:", guesses)
+            print("\nRound:", round, "|",  "Result:", result, "|", "Guesses:", guesses)
 
             results.record_result(result)
 

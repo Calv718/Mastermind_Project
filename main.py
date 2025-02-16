@@ -5,11 +5,14 @@ import argparse
 from scsa import *
 from player import *
 from mastermind import *
-from LogicLegends_B1 import Baseline1
-from LogicLegends_B2 import Baseline2
-from LogicLegends_B3 import Baseline3
-from LogicLegends_B4 import Baseline4
-from LogicLegends_d3 import LogicLegends
+# from LogicLegends_B1 import Baseline1
+# from LogicLegends_B2 import Baseline2
+# from LogicLegends_B3 import Baseline3
+# from LogicLegends_B4 import Baseline4
+# from LogicLegends_d3 import LogicLegends
+
+from sarah_D5 import LogicLegends
+
 
 parser = argparse.ArgumentParser(description="Play a game of Mastermind.")
 parser.add_argument("--board_length", nargs="?", type=int, required=True)
@@ -54,21 +57,10 @@ def str_to_player(player_name: str) -> Player:
 
         player = Boring()
 
-    elif player_name == "Baseline1":
-
-        player = Baseline1()
-
-    elif player_name == "Baseline2":
-
-        player = Baseline2()
-
-    elif player_name == "Baseline3":
-
-        player = Baseline3()
-
     elif player_name == "LogicLegends":
 
         player = LogicLegends()
+        # player = Baseline2()
 
     else:
 

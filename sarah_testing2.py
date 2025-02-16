@@ -153,48 +153,97 @@ class LogicLegends(Player):
         """
         SCSA: UsuallyFewer - Generates codes that usually have fewer (2 or 3) colors,
                            with a small probability of using all available colors.
+        Improved to handle larger sizes by adding constraints to limit the search space.
         """
         codes = []
-        # 90% use 2 or 3 distinct colors
-        for k in [2, 3]:
-            for subset in combinations(colors, k):
-                for p in product(subset, repeat=length):
-                    codes.append(''.join(p))
-        # 10% use all available colors
-        for p in product(colors, repeat=length):
-            codes.append(''.join(p))
-        return codes
+        max_total = 500_000
+        max_subset = 1000
+        distribution = [(2, 36), (3, 54), (len(colors), 10)]  # 36% for 2, 54% for 3, 10% all colors
+
+        for num_colors, prob in distribution:
+            if num_colors > len(colors):
+                continue
+            subsets = list(combinations(colors, num_colors))
+            random.shuffle(subsets)
+            codes_per_subset = min(int(prob / 100 * max_total / len(distribution)), max_subset)
+            
+            for subset in subsets:
+                total_possible = len(subset) ** length
+                if total_possible <= codes_per_subset:
+                    for p in product(subset, repeat=length):
+                        codes.append(''.join(p))
+                        if len(codes) >= max_total:
+                            return codes
+                else:
+                    sampled = set()
+                    while len(sampled) < codes_per_subset and len(sampled) < total_possible:
+                        code = ''.join(random.choices(subset, k=length))
+                        sampled.add(code)
+                    codes.extend(sampled)
+                    if len(codes) >= max_total:
+                        return codes[:max_total]
+        return codes[:max_total]
 
     def generate_preferfewer(self, length: int, colors: list[str]) -> list[str]:
-        """
-        SCSA: PreferFewer - Generates codes with a preference for fewer colors based on a specific probability distribution.
-        """
-        codes = []
-        # 49% use 1 distinct color
-        for subset in combinations(colors, 1):
-            for p in product(subset, repeat=length):
-                codes.append(''.join(p))
-        # 25% use 2 distinct colors
-        for subset in combinations(colors, 2):
-            for p in product(subset, repeat=length):
-                codes.append(''.join(p))
-        # 13% use 3 distinct colors
-        for subset in combinations(colors, 3):
-            for p in product(subset, repeat=length):
-                codes.append(''.join(p))
-        # 12% use 4 distinct colors
-        for subset in combinations(colors, 4):
-            for p in product(subset, repeat=length):
-                codes.append(''.join(p))
-        # 3% use 5 distinct colors
-        if len(colors) >= 5:
-            for subset in combinations(colors, 5):
-                for p in product(subset, repeat=length):
-                    codes.append(''.join(p))
-        # 2% use all available colors
-        for p in product(colors, repeat=length):
-            codes.append(''.join(p))
-        return codes
+            """
+            SCSA: PreferFewer - Generates codes with a preference for fewer colors based on a specific probability distribution.
+            """
+            codes = []
+            max_total_codes = 500_000  # Maximum total codes to prevent excessive memory usage
+            max_codes_per_subset = 1000  # Maximum codes per color subset
+
+            # Define the probability distribution for distinct color counts
+            distribution = [
+                (1, 49),
+                (2, 25),
+                (3, 13),
+                (4, 12),
+                (5, 3)
+            ]
+
+            for num_colors, prob in distribution:
+                if num_colors > len(colors):
+                    continue  # Skip if the number of colors exceeds available colors
+
+                subsets = list(combinations(colors, num_colors))
+                random.shuffle(subsets)  # Shuffle to ensure random subsets are processed first
+
+                for subset in subsets:
+                    # Calculate the number of codes to generate for this subset
+                    # Proportionally distribute the max_total_codes based on probability
+                    num_codes_subset = int((prob / 100) * max_total_codes / len(distribution))
+                    num_codes_subset = min(num_codes_subset, max_codes_per_subset)
+
+                    # Generate all possible codes for the subset if possible
+                    total_possible = len(colors) ** length if num_colors == len(colors) else len(subset) ** length
+                    if total_possible <= num_codes_subset:
+                        # Generate all possible codes
+                        for p in product(subset, repeat=length):
+                            code = ''.join(p)
+                            codes.append(code)
+                            if len(codes) >= max_total_codes:
+                                return codes
+                    else:
+                        # Randomly sample codes to limit the number
+                        sampled_codes = set()
+                        while len(sampled_codes) < num_codes_subset:
+                            code = ''.join(random.choices(subset, k=length))
+                            sampled_codes.add(code)
+                            if len(sampled_codes) >= total_possible:
+                                break  # All possible codes have been sampled
+                        codes.extend(sampled_codes)
+                        if len(codes) >= max_total_codes:
+                            return codes[:max_total_codes]
+
+            # Handle the remaining 2% probability for using all available colors
+            remaining_codes = int(0.02 * max_total_codes)
+            for _ in range(remaining_codes):
+                code = ''.join(random.choices(colors, k=length))
+                codes.append(code)
+                if len(codes) >= max_total_codes:
+                    break
+
+            return codes[:max_total_codes]
 
     def generate_fallback_guess(self, scsa_name: str, length: int, colors: list[str]) -> str:
         """

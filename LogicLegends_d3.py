@@ -25,6 +25,7 @@ class LogicLegends(Player):
         self.time_cutoff = 5       
         self.time_buffer = 0.1  
 
+
     def make_guess(self, board_length: int, colors: list[str], scsa_name: str, last_response: tuple[int, int, int]) -> str:
         """Makes a guess of the secret code for Mastermind
 
@@ -48,7 +49,6 @@ class LogicLegends(Player):
             self.possible_codes = [''.join(p) for p in product(colors, repeat=board_length)]
 
 
-
         # Adapt strategy based on the SCSA used
         if scsa_name == "TwoColor":
             # Restricts guesses to codes with exactly 2 unique colors ("AB", "BA", "BC")
@@ -69,20 +69,6 @@ class LogicLegends(Player):
         elif scsa_name == "FirstLast":
             # Restrict codes where the first and last colors must be the same
             self.possible_codes = [code for code in self.possible_codes if code[0] == code[-1]]
-        
-        # elif scsa_name == "UsuallyFewer":
-        #     # Ensure that the code uses a relatively small number of colors depending on the probability
-        #     probability = random.randint(0, 100)
-        #     if probability < 90:
-        #         # 90% chance that the number of colors used in the code will be kept to 2 or 3 colors max
-        #         self.possible_codes = [code for code in self.possible_codes if len(set(code)) in [2, 3]] 
-        #     else:
-        #         # 10% chance that the number of colors used in the code will be more than 3
-        #         self.possible_codes = [code for code in self.possible_codes if len(set(code)) > 3]
-        
-        # elif scsa_name == "PreferFewer":
-        #     # Restricts guesses to codes that prefer 1, 2, or 3 unique colors.
-        #     self.possible_codes = [code for code in self.possible_codes if len(set(code)) <= 3]
             
         # If there was a previous guess, filter out inconsistent codes based on the feedback
         if self.previous_guesses:
@@ -111,6 +97,7 @@ class LogicLegends(Player):
         self.previous_guesses.append(guess)
         return guess
 
+
     def is_consistent_with_feedback(self, guess: str, code: str, feedback: tuple[int, int, int]) -> bool:
         # Peg number where BOTH the guess and the code have the same color in the same position
         exact_matches = sum(1 for g, c in zip(guess, code) if g == c)
@@ -126,8 +113,4 @@ class LogicLegends(Player):
 
         # Compare calculated feedback with the provided feedback
         return (exact_matches, almost_matches, feedback[2]) == feedback
-
-    def is_alternating(self, code: str) -> bool:
-        """Check if the code follows an alternating color pattern (e.g., ABAB)"""
-        return all(code[i] != code[i+1] for i in range(len(code) - 1))
 
