@@ -146,7 +146,7 @@ class LogicLegends(Player):
 
     def is_consistent_with_feedback(self, guess: str, code: str, feedback: tuple[int, int, int]) -> bool:
         """
-        Check if a given code is consistent with the feedback from the previous guess.
+        Check if a given code is consistent with the feedback from the previous guess.                                                                              
 
         Args:
             guess (str): The previous guess.
@@ -1161,3 +1161,4 @@ class LogicLegends(Player):
         """
         # Uses a list comprehension for efficient generation of all possible combinations
         return [''.join(p) for p in product(colors, repeat=length)]
+
