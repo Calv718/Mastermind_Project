@@ -1,0 +1,21 @@
+Below are the results from the Logic Legends Tournament Player against 2 non-trivial SCSA's:
+Trivial SCSA's: InsertColors, ABColor, and OnlyOnce
+
+
+TwoColor:
+
+Player: LogicLegends
+SCSA Name: TwoColor
+Game: 8 Pegs 10 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 14677.139148235541}
+
+
+
+TwoColorAlternating:
+
+Player: LogicLegends
+SCSA Name: TwoColorAlternating
+Game: 8 Pegs 10 Colors
+Rounds: 100 out of 100
+Results: {Wins: 100, Losses: 0, Failures: 0, Score: 17302.549136033518}

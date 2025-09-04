@@ -5,40 +5,17 @@ import argparse
 from scsa import *
 from player import *
 from mastermind import *
-from LogicLegends_B1 import Baseline1
-from LogicLegends_B2 import Baseline2
-from LogicLegends_B3 import Baseline3
-from LogicLegends_B4 import Baseline4
-from LogicLegends_d3 import LogicLegends
+from sarah_D5 import LogicLegends
 
 parser = argparse.ArgumentParser(description="Play a game of Mastermind.")
 parser.add_argument("--board_length", nargs="?", type=int, required=True)
-parser.add_argument(
-    "--num_colors", nargs="?", type=int, required=True, choices=range(1, 27)
-)
-parser.add_argument(
-    "--player_name",
-    nargs="?",
-    type=str,
-    required=True,
-    choices=["RandomFolks", "Boring", "Baseline1", "Baseline2", "Baseline3", "LogicLegends"],
-)
-parser.add_argument(
-    "--scsa_name",
-    nargs="?",
-    type=str,
-    required=True,
-    choices=[
-        "InsertColors",
-        "TwoColor",
-        "ABColor",
-        "TwoColorAlternating",
-        "OnlyOnce",
-        "FirstLast",
-        "UsuallyFewer",
-        "PreferFewer",
-    ],
-)
+parser.add_argument("--num_colors", nargs="?", type=int, required=True, choices=range(1, 27))
+parser.add_argument("--player_name",nargs="?", type=str, required=True, choices=["RandomFolks", "Boring", "LogicLegends"])
+parser.add_argument("--scsa_name", nargs="?", type=str, required=True, choices=[ "InsertColors", "TwoColor", "ABColor", "TwoColorAlternating", "OnlyOnce", "FirstLast", "UsuallyFewer", "PreferFewer"])
+
+# Adding a parser for using a code file for the mystery SCSA's
+# parser.add_argument("--code_file", nargs="?", type=str, required=True, help="File containing pregenerated codes for practice tournament")
+
 parser.add_argument("--num_rounds", nargs="?", type=int, required=True)
 
 args = parser.parse_args()
@@ -53,18 +30,6 @@ def str_to_player(player_name: str) -> Player:
     elif player_name == "Boring":
 
         player = Boring()
-
-    elif player_name == "Baseline1":
-
-        player = Baseline1()
-
-    elif player_name == "Baseline2":
-
-        player = Baseline2()
-
-    elif player_name == "Baseline3":
-
-        player = Baseline3()
 
     elif player_name == "LogicLegends":
 
@@ -122,4 +87,7 @@ player = str_to_player(args.player_name)
 scsa = str_to_scsa(args.scsa_name)
 colors = [chr(i) for i in range(65, 91)][: args.num_colors]
 mastermind = Mastermind(args.board_length, colors)
+
 mastermind.play_tournament(player, scsa, args.num_rounds)
+
+# mastermind.practice_tournament(player, scsa.name, args.code_file)

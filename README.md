@@ -1,14 +1,85 @@
-# mastermind
+# Mastermind
 
-Please read the project description on Blackboard.
+This project was developed as part of an advanced Artificial Intelligence course and centers around building an intelligent and adaptive player for the code-breaking game commonly known as Mastermind. The core challenge is to design a player capable of solving any variation of the game across a wide range of secret code strategies, within strict time and guess constraints.
+
 
 See main.py or examples.ipynb for example usages.
-
 Example run of main.py:
 `python3 main.py --board_length 4 --num_colors 6 --player_name RandomFolks --scsa_name InsertColors --num_rounds 100`
 
 
-# How to run and test the code against different player baseline strategies and SCSA's
+## Game Rules (Simplified)
+
+- The game involves guessing the correct sequence of colored pegs (the "secret code").
+- After each guess, the player receives feedback:
+  1. Number of pegs that are the **correct color and in the correct position**
+  2. Number of pegs that are the **correct color but in the wrong position**
+  3. Number of guesses made so far
+- The player has a maximum of **100 guesses per round**.
+
+### Things to keep in mind
+
+- We have two variables: p (pegs) and c (colors). Their values are both positive integers.
+- Versions depend on how many pegs and colors we have (colors - pegs). 4 - 6 means there are 4 colors and 6 pegs
+- Colors are represented by as distinct consecutive letters of the alphabet in lexical order. If c = 6, the colors will be A, B, C, D, E, F
+- Size of the state space (the program's total possible codes) is colors^pegs
+- A tournament has 100 rounds, 1 round is limited to 100 guesses, each guess has a time limit of 5 seconds
+- Various Secret Code Selection Algorithms (SCSA) will be used to generate the secret code 
+
+
+## Objective
+
+To create a generalized, yet targeted player that can consistently win games of Mastermind by:
+
+- Adapting dynamically to different secret code generation algorithms
+- Guessing efficiently under both time (≤ 5 seconds/guess) and space constraints
+- Maximizing win rate within a 100-round tournament competing against other teams
+- Design and code a player that can accurately and efficiently guess the secret code through multiple game versions with unique patterns
+
+
+## Complexity & Challenge
+
+To increase difficulty and test algorithmic design skills, the professor and TA created multiple **Secret Code Selection Algorithms (SCSAs)**. Each SCSA follows its own logic to generate the secret code, such as:
+
+- `TwoColor` - SCSA that generates codes containing only two randomly chosen colors
+- `OnlyOnce` - SCSA that generates codes in which a color appears at most once
+- `FirstLast` - SCSA that generates codes in which the first and last colors are the same
+- `PreferFewer` - SCSA that generates codes with a preference for fewer colors
+
+These variations force the player to reason strategically and adapt in real-time, making the problem exponentially harder as the number of pegs and colors increases. (state space is colors^pegs)
+Our player was engineered to be both flexible and strategic, capable of adjusting to each SCSA without hardcoding for any one of them.
+
+### Key Features
+
+- **Dynamic Strategy Switching**  
+  The player adjusts its guessing behavior based on inferred or known SCSA being used.
+
+- **SCSA-Specific Search Space Reduction**  
+  Applies customized filters for each SCSA to shrink the number of valid possibilities early.
+
+- **Feedback-Consistent Filtering**  
+  Ensures that every new guess is logically consistent with previous feedback.
+
+- **Lightweight Heuristics**  
+  Uses simple scoring methods to prioritize guesses that are likely to narrow the solution space most effectively.
+
+- **Time-Aware Execution**  
+  Incorporates a time buffer to ensure each guess is made in under 5 seconds, regardless of the board complexity.
+
+## What This Demonstrates
+
+This project is a showcase of:
+
+- Efficient search-space pruning
+- Adaptive and generalized algorithm design
+- Balancing performance constraints (time & space) with solution accuracy
+- Real-world application of heuristics, feedback loops, and domain-specific optimization
+
+
+<details>
+<summary>Click here to view running instructions </summary>
+
+How to run and test the code against different player baseline strategies and SCSA's
 
 ### How to run the code in this repo:
 - Firstly use ```git clone``` in the command line to clone this repo into your local machine.
@@ -43,3 +114,5 @@ Example run of main.py:
 - run ```python  main.py --board_length 6 --num_colors 4 --player_name Baseline3 --scsa_name InsertColors --num_rounds 100```
 - "Baseline3" should be replaced by the player name you are trying to use.
 - "InsertColors" should be replaced by the SCSA you would like to use.
+
+</details>
